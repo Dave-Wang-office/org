@@ -1,0 +1,42 @@
+{include file="common/head"/}
+<div class="layui-carousel" id="carousel">
+    <div carousel-item="">
+        {volist name="adList" id="vo"}
+        <div class="picture">
+            <a href="{$vo.url}" target="_blank">
+                <div class="banner-title">{$vo.title}</div>
+                <img src="{$vo.pic}">
+            </a>
+        </div>
+        {/volist}
+    </div>
+</div>
+<div class="layui-container">
+    <div class="debris">
+        <div class="layui-row">
+            {tlist db='debris' id='list' limit="3" where="type_id = 1"}
+            <div class="layui-col-xs12 layui-col-sm12 layui-col-md4">
+                <div class="site-idea">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>{$list.title}</legend>
+                        <div class="info">
+                            {$list.content|raw}
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            {/tlist}
+        </div>
+    </div>
+</div>
+{include file="common/footer"/}
+<script>
+    layui.config({
+        version: "3.0.0"
+        ,base: '__HOME__/mods/' //这里实际使用时，建议改成绝对路径
+    }).extend({
+        fly: 'index'
+    }).use('fly');
+</script>
+</body>
+</html>
